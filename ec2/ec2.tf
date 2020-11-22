@@ -41,7 +41,7 @@ resource "aws_instance" "Jenkins-Server" {
     inline = [
       "sudo curl -O https://bootstrap.pypa.io/get-pip.py",
       "sudo python get-pip.py",
-      "sudo yum install awscli"
+      "sudo yum install awscli -y"
     ]
   }
   connection {
