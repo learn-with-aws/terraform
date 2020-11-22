@@ -36,6 +36,14 @@ resource "aws_instance" "Jenkins-Server" {
       "sudo yum install -y ansible"
     ]
   }
+
+  provisioner "remote-exec" {
+    inline = [
+      "sudo curl -O https://bootstrap.pypa.io/get-pip.py",
+      "sudo python get-pip.py",
+      "sudo yum install awscli"
+    ]
+  }
   connection {
     host = self.public_ip
     type = "ssh"
