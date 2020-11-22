@@ -3,10 +3,12 @@ variable "REGION" {
 }
 
 variable "AMI" {
-  default = "ami-026669ec456129a70"
+  default = "ami-026f33d38b6410e30"
 }
 
-
+variable "INSTANCE_USER" {
+  default = "centos"
+}
 variable "PATH_TO_PRIVATE_KEY_FILE" {
   default = "shashi-mumbai.pem"
 }
