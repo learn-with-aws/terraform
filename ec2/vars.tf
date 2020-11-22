@@ -10,5 +10,5 @@ variable "INSTANCE_USER" {
   default = "centos"
 }
 variable "PATH_TO_PRIVATE_KEY_FILE" {
-  default = "shashi-mumbai.pem"
+  default = "/home/centos/shashi-mumbai.pem"
 }
