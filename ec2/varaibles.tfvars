@@ -1,1 +1,1 @@
-AMI = "MYAMI"
+# AMI = "MYAMI"
