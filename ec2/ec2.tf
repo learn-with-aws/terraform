@@ -7,7 +7,7 @@ resource "aws_instance" "Jenkins-Server" {
   monitoring = true
   key_name = "shashi-mumbai"
   tags = {
-    Name = "Jenkins-Server"
+    Name = "Jenkins-Server-10"
   }
 //  provisioner "file" {
 //    source = "jenkins_install.sh"
