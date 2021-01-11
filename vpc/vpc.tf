@@ -99,3 +99,11 @@ resource "aws_route_table_association" "rt-pub-1c" {
   route_table_id = aws_route_table.gateway-main-routetable.id
 }
 
+terraform {
+ backend “s3” {
+ bucket = "terraform-remote-state-storage-s3-vpc"
+ region = "us-east-1"
+ key = "vpc/terraform.tfstate"
+ }
+}
+
