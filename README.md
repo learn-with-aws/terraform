@@ -1,4 +1,11 @@
 # terraform
 
-# Note : 
-    - First you need to create S3 Bucket for storing the terraform.tfstate file in S3 Bucket 
+### Terraform scripts need to be ready for the following topics.
+
+    - S3
+    - CloudFront
+    - EC2
+    - VPC
+    - ELB
+    - AutoScaling
+    - RDS
