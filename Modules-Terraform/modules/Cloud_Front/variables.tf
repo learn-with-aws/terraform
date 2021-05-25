@@ -49,3 +49,8 @@ variable "geo_restriction_locations" {
     # e.g. ["US", "CA", "GB", "DE"]
     default = []
 }
+
+variable "comment" {
+    type = string
+    default = "CloudFront deployment for fast access"
+}

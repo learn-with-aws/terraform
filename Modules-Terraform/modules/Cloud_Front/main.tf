@@ -61,7 +61,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
 
     enabled             = true
     is_ipv6_enabled     = true
-    comment             = "CloudFront for Serving static content" 
+    comment             = var.comment
     default_root_object = "${var.success_page}"
     price_class         = "PriceClass_200"
 
