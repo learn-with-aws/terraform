@@ -54,3 +54,8 @@ variable "comment" {
     type = string
     default = "CloudFront deployment for fast access"
 }
+
+variable "force_destroy" {
+    type = bool
+    default = false
+}

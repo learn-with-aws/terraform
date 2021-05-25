@@ -20,6 +20,12 @@ resource "aws_s3_bucket" "wildcraft" {
       target_prefix = var.logs_target_prefix
   }
 
+#   lifecycle {
+#     prevent_destroy = true
+#   }
+
+  force_destroy = true
+
   tags = {
       Name        = var.bucket_Name
       Environment = var.environment
