@@ -75,6 +75,11 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
         cloudfront_default_certificate = true
     }
 
+    # viewer_certificate = {
+    #     acm_certificate_arn = "arn:aws:acm:us-east-1:135367859851:certificate/1032b155-22da-4ae0-9f69-e206f825458b"
+    #     ssl_support_method  = "sni-only"
+    # }
+
     default_cache_behavior {
         allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
         cached_methods   = ["GET", "HEAD"]
