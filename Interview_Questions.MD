@@ -79,3 +79,24 @@ Solution 3 :
    Terraform Assume Role
    
             We will instantiate the team-account-roles module once per team account. In order to run the full project with only the credentials from the Identity account, we will use Terraform’s assume role function.
+
+
+### Take OutPut from one module and use it in different module.
+
+
+        In your kafka module, you could define an output that looks something like this:
+
+
+        output "instance_ids" {
+          value = ["${aws_instance.kafka.*.id}"]
+        }
+        Case 1 – If you are calling kafka module from cloudwatch module by instantiated the module with something like:
+
+
+
+        module "kafka" {
+          source = "./modules/kafka"
+        }
+
+        # You can then access that output as follows:
+        instances = ["${module.kafka.instance_ids}"]
