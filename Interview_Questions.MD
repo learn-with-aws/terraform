@@ -1,5 +1,20 @@
 ## Terraform
 
+## Interview Questions 
+
+- What is the terraform Module and have you written any ??
+- What is the statefile and how you store your state files remotley ?
+- What is Data in terraform ??
+- What is Output variable and how to declare that ?
+- How to track existing resource from terraform ?
+- How to use one module output into other module ?
+- List out 5 commonly used terraform commands ?
+- What is Backend in terraform ?
+- What is Userdata, provisioners, local variables in terraform ?
+
+
+
+
 ### Terraform import existing infrastructure details.
 
     Syntax : 
