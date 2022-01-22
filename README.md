@@ -51,6 +51,21 @@
        Usage :
 
         resource_group_id = data.ibm_resource_group.res_grp.id
+        
+   Data Source from user input
+   
+                data "ibm_is_ssh_key" "ssh_key" {
+                  for_each = toset(split(",", var.ssh_key_name))
+                  name     = each.value
+                }
+
+                locals {
+                  ssh_key_list = split(",", var.ssh_key_name)
+                  ssh_key_id_list = [
+                    for name in local.ssh_key_list :
+                    data.ibm_is_ssh_key.ssh_key[name].id
+                  ]
+                }
 
 ### Terraform scripts need to be ready for the following topics.
 
