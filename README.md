@@ -1,4 +1,26 @@
-# terraform
+# Terraform Interview Questions
+
+## Variable validations.
+
+        variable "api_key" {
+          type        = string
+          sensitive   = true
+          validation {
+            condition     = var.api_key != ""
+            condition     = length(var.api_key) <= 11
+            condition     = 1 <= var.worker_nodes_per_zone && var.worker_nodes_per_zone <= 1000
+            condition     = contains(["true", "false"], var.required_monitoring)
+            condition     = contains(["3", "5", "10"], var.bandwidth)
+            condition     = var.db_vsi_count <= 3
+            condition     = contains([8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384], var.bastion_ip_count)
+            error_message = "API key for IBM Cloud must be set."
+          }
+          validation {
+            condition     = can(regex("^[A-Za-z][-0-9A-Za-z]*-$", var.prefix))
+            error_message = "For the prefix value only a-z, A-Z and 0-9 are allowed."
+          }
+        }
+
 
 ### Terraform scripts need to be ready for the following topics.
 
