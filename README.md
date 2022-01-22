@@ -66,6 +66,18 @@
                     data.ibm_is_ssh_key.ssh_key[name].id
                   ]
                 }
+                
+## Locals
+
+        You can use local values to simplify your Terraform configuration and avoid repetition. Local values (locals) can also help you write more readable configuration by using meaningful names rather than hard-coding values.
+        
+                locals {
+                  lin_userdata = <<-EOUD
+                        #!/bin/bash
+                        curl -sL https://raw.githubusercontent.com/IBM-Cloud/ibm-cloud-developer-tools/master/linux-installer/idt-installer | bash
+                        ibmcloud plugin install vpc-infrastructure     
+                        EOUD    
+                }
 
 ### Terraform scripts need to be ready for the following topics.
 
