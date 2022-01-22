@@ -47,6 +47,10 @@
                 data "ibm_resource_group" "res_grp" {
                   name = var.resource_group
                 }
+                
+       Usage :
+
+        resource_group_id = data.ibm_resource_group.res_grp.id
 
 ### Terraform scripts need to be ready for the following topics.
 
