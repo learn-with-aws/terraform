@@ -78,6 +78,55 @@
                         ibmcloud plugin install vpc-infrastructure     
                         EOUD    
                 }
+    
+## Null Resource
+
+       - The primary use-case for the null resource is as a do-nothing container for arbitrary actions taken by a provisioner.
+       - A common scenario is to perform custom actions using local-exec and remote-exec when a number of resources gets created. Example of such case is introduction of a delay in resource creation
+    
+
+                /**
+                * This null resource block is for deleting the dynamic ssh key generated via bastion server. This will execute on terraform destroy. 
+                * This block is for those users who has Linux/Mac as their local machines.
+                * Trigger :The triggers argument allows specifying an arbitrary set of values that, when changed, will cause the resource to be replaced.
+                **/
+
+                resource "null_resource" "delete_dynamic_ssh_key" {
+                  count = lower(var.local_machine_os_type) == "windows" ? 0 : 1
+
+                  triggers = {
+                    region          = var.region
+                    api_key         = var.api_key
+                    prefix          = var.prefix
+                    bastion_ssh_key = var.bastion_ssh_key
+                  }
+                  provisioner "local-exec" {
+                    when    = destroy
+                    command = <<EOT
+                      echo 'connection success'
+                      ibmcloud config --check-version=false
+                      i=3
+                      ibmcloud login -r ${self.triggers.region} --apikey ${self.triggers.api_key}
+                      while [ $? -ne 0 ] && [ $i -gt 0 ]; do
+                           i=$(( i - 1 ))
+                           ibmcloud login -r ${self.triggers.region} --apikey ${self.triggers.api_key}
+                      done      
+                      key_id=$(ibmcloud is keys | grep ${self.triggers.prefix}${self.triggers.bastion_ssh_key} | awk '{print $1}')
+                      if [ ! -z "$key_id" ]; then
+                          i=3
+                          ibmcloud is key-delete $key_id -f
+                          while [ $? -ne 0 ] && [ $i -gt 0 ]; do
+                              i=$(( i - 1 ))
+                              ibmcloud is key-delete $key_id -f
+                          done           
+                      fi     
+                      ibmcloud logout
+                    EOT    
+                  }
+                  depends_on = [
+                    ibm_is_instance.bastion,
+                  ]
+                }
 
 ### Terraform scripts need to be ready for the following topics.
 
