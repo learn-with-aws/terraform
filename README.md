@@ -20,7 +20,33 @@
             error_message = "For the prefix value only a-z, A-Z and 0-9 are allowed."
           }
         }
+        
+## Data Source 
 
+      - Data sources allow Terraform to use information defined outside of Terraform, defined by another separate Terraform configuration, or modified by functions.
+      - Data sources can be used for a number of reasons; but their goal is to do something and then give you data.
+      
+      Example-1 : 
+      
+                data "aws_ami" "web" {
+                  filter {
+                    name   = "state"
+                    values = ["available"]
+                  }
+
+                  filter {
+                    name   = "tag:Component"
+                    values = ["web"]
+                  }
+
+                  most_recent = true
+                }
+
+       Example-2  :
+       
+                data "ibm_resource_group" "res_grp" {
+                  name = var.resource_group
+                }
 
 ### Terraform scripts need to be ready for the following topics.
 
