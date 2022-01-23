@@ -1,5 +1,10 @@
 # Terraform Interview Questions
 
+## Terraform refresh
+
+        attempts to find any resources held in the state file and update with any drift that has happened in the provider outside of Terraform since it was last ran.
+        - terraform refresh
+
 ## Terraform Lock
 
         Terraform will lock your state for all operations that could write state. This prevents others from acquiring the lock and potentially corrupting your state.
