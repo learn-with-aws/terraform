@@ -1,7 +1,40 @@
 # Terraform Interview Questions
 
     
-### USe Multiple AWS accounts with single module ( With alias option )
+## Terraform provider 
+
+
+            ## IBM provider
+            terraform {
+                required_providers {
+                    ibm = {
+                        source = "IBM-Cloud/IBM"
+                        version = "~>1.30.0"
+                    }
+                }
+            }
+
+            provider "ibm" {
+                region = "us-south"
+                ibmcloud_timeout = 300
+                ibmcloud_api_key = var.api_key
+            }
+
+            ## AWS provider
+            terraform {
+              required_providers {
+                aws = {
+                  source  = "hashicorp/aws"
+                  version = "~> 3.0"
+                }
+              }
+            }
+
+            provider "aws" {
+              region = "us-east-1"
+            }
+
+## USe Multiple AWS accounts with single module ( With alias option )
 
         You can configure multiple providers ( one per account in your case) and create an alias for each. Then you will need to specify the provider for each ressource. 
         
