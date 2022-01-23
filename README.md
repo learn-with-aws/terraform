@@ -1,5 +1,9 @@
 # Terraform Interview Questions
 
+## How to create a specific resource out of lots of resouces in a file.
+        
+        terraform apply -target=aws_vpc.myvpc -target=aws_s3_bucker.mybucket
+        
 ## Terraform refresh
 
         attempts to find any resources held in the state file and update with any drift that has happened in the provider outside of Terraform since it was last ran.
