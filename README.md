@@ -4,6 +4,15 @@
         
         terraform apply -target=aws_vpc.myvpc -target=aws_s3_bucker.mybucket
         
+      If you want to create a specific module code then do like below.
+        
+        terraform apply -target=module.instance
+        
+      Destroy a specific resource
+        
+        terraform destroy -target=aws_vpc.myvpc
+        
+        
 ## Terraform refresh
 
         attempts to find any resources held in the state file and update with any drift that has happened in the provider outside of Terraform since it was last ran.
