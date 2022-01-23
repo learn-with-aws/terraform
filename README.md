@@ -1,5 +1,33 @@
 # Terraform Interview Questions
 
+    
+### USe Multiple AWS accounts with single module ( With alias option )
+
+        You can configure multiple providers ( one per account in your case) and create an alias for each. Then you will need to specify the provider for each ressource. 
+        
+        Example:
+
+            provider "aws" {
+              region  = "eu-west-1"
+              profile = "profile1"
+              alias   = "account1"
+            }
+
+            provider "aws" {
+              region  = "eu-west-1"
+              profile = "profile2"
+              alias   = "account2"
+            }
+
+            resource "aws_lambda_function" "function1" {
+              provider = "aws.account1" // will be created in account 1
+              ...
+            }
+            resource "aws_lambda_function" "function2" {
+              provider = "aws.account2" // will be created in account 2
+              ...
+            }
+
 ## How to create a specific resource out of lots of resouces in a file.
         
             terraform apply -target=aws_vpc.myvpc -target=aws_s3_bucker.mybucket
