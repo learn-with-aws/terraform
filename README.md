@@ -82,7 +82,14 @@
 ## Null Resource
 
        - The primary use-case for the null resource is as a do-nothing container for arbitrary actions taken by a provisioner.
-       - A common scenario is to perform custom actions using local-exec and remote-exec when a number of resources gets created. Example of such case is introduction of a delay in resource creation
+       - A common scenario is to perform custom actions using local-exec and remote-exec when a number of resources gets created. Example of such case is introduction of a delay in resource creation.
+       - The triggerdefined in your null_resourceblock defines when the script you have specified is executed. 
+       
+            For example:
+
+                The null_resourcetrigger can be set to run only if a resource exists:
+
+                id = resource.id
     
 
                 /**
