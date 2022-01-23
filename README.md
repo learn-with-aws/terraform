@@ -146,6 +146,7 @@
       }
       
    Example-2
+   
         provisioner "file" {
             content     = "I want to copy this string to the destination file server.txt"
             destination = "/home/ubuntu/server.txt"
