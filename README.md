@@ -15,6 +15,28 @@
             Or Sometime you need to kill your process
             
                 ps aux | grep terraform and sudo kill -9 <process_id>
+                
+## Remove a specific terraform state
+
+        List All state:- 
+        
+                terraform state list
+
+        remove state which you want to:- 
+        
+                terraform state rm <name>
+                
+        Question : Delete all resources except one
+        
+                # list all resources
+                terraform state list
+
+                # remove that resource you don't want to destroy
+                # you can add more to be excluded if required
+                terraform state rm <resource_to_be_deleted> 
+
+                # destroy the whole stack except above excluded resource(s)
+                terraform destroy 
 
 ## Variable validations.
 
