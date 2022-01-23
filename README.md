@@ -2,15 +2,41 @@
 
 ## How to create a specific resource out of lots of resouces in a file.
         
-        terraform apply -target=aws_vpc.myvpc -target=aws_s3_bucker.mybucket
+            terraform apply -target=aws_vpc.myvpc -target=aws_s3_bucker.mybucket
         
-      If you want to create a specific module code then do like below.
+    If you want to create a specific module code then do like below.
         
         terraform apply -target=module.instance
         
-      Destroy a specific resource
+    Destroy a specific resource
         
         terraform destroy -target=aws_vpc.myvpc
+        
+      
+### Terraform import existing infrastructure details.
+
+    Syntax : 
+    
+        terraform import <resource_type>.<resource_name> <resource_id>z
+        
+    Example :  
+      
+        terraform import aws_s3_bucket.examplebucket anand0987uio
+        
+        
+## Terraform WorkSpace
+
+        In Terraform CLI, workspaces are separate instances of state data that can be used from the same working directory. You can use workspaces to manage multiple non-overlapping groups of resources with the same configuration.
+
+        Note: If you are using the backend, then fro every workspace it will have separete folder in S3 backend to store the config files.
+        
+                terraform workspace list
+                terraform workspace new dev
+                terraform workspace select dev
+                terraform workspace delkete dev
+                
+        Example : 
+                terraform apply -var-files "filename" or -var "prefix=variables"
         
         
 ## Terraform refresh
