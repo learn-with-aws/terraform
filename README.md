@@ -234,8 +234,71 @@ protect this. If you want to delete this server then before executing terraform 
            ]
          }
         }
+        
+## Terraform Loops
 
+Terraform offers several different looping constructs, each intended to be used in a slightly different scenario:
+   - count parameter: loop over resources.
+   - for_each expressions: loop over resources and inline blocks within a resource.
+   - for expressions: loop over lists and maps.
 
+ Count : 
+        Example -1 :
+        
+         resource "aws_iam_user" "example" {
+                  count = 3
+                  name  = "neo.${count.index}"
+         }
+         
+         Example 2:
+         
+         resource "aws_iam_user" "example" {
+                  count = length(var.user_names)
+                  name  = var.user_names[count.index]
+         }
+         
+  For_each : 
+  
+  Input : 
+  
+          variable "user_names" {
+                  description = "Create IAM users with these names"
+                  type        = list(string)
+                  default     = ["neo", "trinity", "morpheus"]
+          }
+          
+          Example : 
+          
+          resource "aws_iam_user" "example" {
+                  for_each = toset(var.user_names)
+                  name     = each.value
+          }
+          
+          Dynamic For_each :
+          
+                resource "aws_autoscaling_group" "example" {
+                  # (...)
+                  dynamic "tag" {
+                    for_each = var.custom_tags
+                    content {
+                      key                 = tag.key
+                      value               = tag.value
+                      propagate_at_launch = true
+                    }
+                  }
+                }
+                
+                Example-2:
+                
+                  dynamic "zones" {
+                    for_each = (var.worker_zone != null ? var.worker_zone : [])
+                    content {
+                      name      = "${var.region}-${zones.key + 1}"
+                      subnet_id = zones.value
+                    }
+                  }
+
+  
 ### Terraform scripts need to be ready for the following topics.
 
     - S3
