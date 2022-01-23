@@ -64,7 +64,13 @@
                 terraform workspace delkete dev
                 
         Example : 
+        
                 terraform apply -var-files "filename" or -var "prefix=variables"
+                
+        Example :           
+        
+                locals {
+                    env="${terraform.workspace}"
         
         
 ## Terraform refresh
