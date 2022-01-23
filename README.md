@@ -206,6 +206,36 @@
     }
 
 
+## Prevent Destroy
+
+As this bastion server is very important to access other VSI. So to prevent the accidental 
+deletion of this server we are adding a lifecycle block with prevent_destroy=true flag to 
+protect this. If you want to delete this server then before executing terraform destroy, please update prevent_destroy=false.
+
+        resource "ibm_is_instance" "bastion" {
+          name           = "${var.prefix}bastion-vsi"
+          keys           = var.bastion_ssh_key
+          image          = var.bastion_image
+          profile        = var.bastion_profile
+          resource_group = var.resource_group
+          vpc            = var.vpc_id
+          zone           = element(var.zones, 0)
+          user_data      = local.lin_userdata
+
+          primary_network_interface {
+            subnet          = ibm_is_subnet.bastion_sub.id
+            security_groups = [ibm_is_security_group.bastion.id]
+          }
+
+         lifecycle {
+           prevent_destroy = false // TODO: Need to toggle this variable before publishing the script.
+           ignore_changes = [
+             user_data,
+           ]
+         }
+        }
+
+
 ### Terraform scripts need to be ready for the following topics.
 
     - S3
