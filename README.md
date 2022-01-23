@@ -1,5 +1,21 @@
 # Terraform Interview Questions
 
+## Terraform Lock
+
+        Terraform will lock your state for all operations that could write state. This prevents others from acquiring the lock and potentially corrupting your state.
+
+        State locking happens automatically on all operations that could write state. You won't see any message that it is happening. If state locking fails, Terraform will not continue. You can disable state locking for most commands with the -lock flag but it is not recommended.
+        
+                terraform force-unlock -force 9db590f1-b6fe-c5f2-2678-8804f089deba
+                
+            Or to relaunch the plan with the following option -lock=false
+
+                terraform plan -lock=false ...
+                
+            Or Sometime you need to kill your process
+            
+                ps aux | grep terraform and sudo kill -9 <process_id>
+
 ## Variable validations.
 
         variable "api_key" {
