@@ -1,8 +1,16 @@
 # Terraform Interview Questions
 
     
-## Terraform provider 
+## Terraform Taint and Un-Taint
 
+If you manually mark a terraform resource as Tainted, It will force to detsroy / recreate on the next plan/apply by using CLI.
+
+Terraform taint resource.name
+
+Terraform untaint resource.name
+
+
+## Terraform provider 
 
             ## IBM provider
             terraform {
