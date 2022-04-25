@@ -1,5 +1,14 @@
 # Terraform Interview Questions
 
+## Terragrunt
+
+Terragrunt can help with structuring your code directories where you can write the Terraform code once and apply the same code with different variables and different remote state locations for each environment.Another useful feature of Terragrunt is before and after hooks.
+
+![image](https://user-images.githubusercontent.com/51190838/165051868-dbe31290-aef5-4e2c-b739-5b10d474c4af.png)
+![image](https://user-images.githubusercontent.com/51190838/165052037-e5b24dec-7581-4f8a-8645-0fbbd43495b9.png)
+
+
+
 ## Terraform Dynamic Block
 
 This example shows how dynamic blocks can be used to dynamically create multiple instances of a block within a resource from a complex value such as a list of maps.
