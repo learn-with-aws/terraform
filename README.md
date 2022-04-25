@@ -1,6 +1,5 @@
 # Terraform Interview Questions
 
-## Terragrunt
 
 Screenshot 2022-04-25 at 2.07.14 PM<img width="868" alt="image" src="https://user-images.githubusercontent.com/51190838/165052314-fa43ed5c-c1df-411c-830f-6f9913a6e77f.png">
 
@@ -61,11 +60,14 @@ Example-2 :
     
 ## Terraform Taint and Un-Taint
 
+A tainted resource is a resource that is forced to be destroyed and recreated on the next apply command. When a resource is marked as tainted, the state files are updated, but nothing changes on infrastructure. The terraform plan out shows that help will get destroyed and recreated. The changes get implemented when the next apply happens.
+
 If you manually mark a terraform resource as Tainted, It will force to detsroy / recreate on the next plan/apply by using CLI.
 
 Terraform taint resource.name
 
 Terraform untaint resource.name
+
 
 
 ## Terraform provider 
