@@ -1,5 +1,9 @@
 # Terraform Interview Questions
 
+## What is a null resource in Terraform?
+
+A terraform null resource is a configuration that runs like a standard terraform resource block but does not create any resources. This may sound like a strange and useless resource, but it can be useful in various situations to work around limitations in Terraform.
+
 ## How can you define dependencies in Terraform?
 
 Terraform has built-in dependency management. **Terraform has two kinds of dependencies between resources- implicit and explicit dependencies.**
