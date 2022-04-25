@@ -1,5 +1,13 @@
 # Terraform Interview Questions
 
+## How can you define dependencies in Terraform?
+
+Terraform has built-in dependency management. **Terraform has two kinds of dependencies between resources- implicit and explicit dependencies.**
+
+Implicit dependencies, as the name suggests, are detected by Terraform automatically. This is when the output of a “resource A” is used in “resource B”. Terraform automatically detects that “resource B” needs to be created only after “resource A”
+
+Explicit dependencies can be specified in cases where two resources are internally dependent on each other without sharing any outputs. This can be done by using the depends_on parameter in the configuration block.
+
 ## How will you upgrade plugins on Terraform?
 
 Run ‘terraform init’ with ‘-upgrade’ option. This command rechecks the releases.hashicorp.com to find new acceptable provider versions. It also downloads available provider versions. “.terraform/plugins/<OS>_<ARCH>” is the automatic downloads directory.
