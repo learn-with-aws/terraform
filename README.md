@@ -1,5 +1,17 @@
 # Terraform Interview Questions
 
+##  terraform init: Initializes remote backends; downloads providers and remote modules defined in your configuration.
+
+    terraform init -upgrade: used to upgrade the existing downloaded providers.
+    terraform plan: generates the execution plan for the infrastructure creation or updation.
+    terraform apply: creates or updates the infrastructure after requesting confirmation from user.
+    terraform apply –auto-approve: creates or updates the infrastructure; user approval stage is skipped.
+    terraform destroy: deletes the infrastructure after requesting confirmation from user.
+    terraform destroy –auto-approve: deletes the infrastructure; user approval stage is skipped.
+    terraform fmt: scans the current directory for configuration files and formats them according to the HCP canonical style and format.
+    terraform fmt –recursive: scans the current directory as well as the sub directories for configuration files and formats them according to the HCP canonical style and format.
+    terraform show: provides a human-readable output from a state or plan file.
+    
 ## What is a null resource in Terraform?
 
 A terraform null resource is a configuration that runs like a standard terraform resource block but does not create any resources. This may sound like a strange and useless resource, but it can be useful in various situations to work around limitations in Terraform.
