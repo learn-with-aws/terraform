@@ -2,6 +2,9 @@
 
 ## Terragrunt
 
+Screenshot 2022-04-25 at 2.07.14 PM<img width="868" alt="image" src="https://user-images.githubusercontent.com/51190838/165052314-fa43ed5c-c1df-411c-830f-6f9913a6e77f.png">
+
+
 Terragrunt can help with structuring your code directories where you can write the Terraform code once and apply the same code with different variables and different remote state locations for each environment.Another useful feature of Terragrunt is before and after hooks.
 
 ![image](https://user-images.githubusercontent.com/51190838/165051868-dbe31290-aef5-4e2c-b739-5b10d474c4af.png)
