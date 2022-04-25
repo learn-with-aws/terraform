@@ -1,5 +1,51 @@
 # Terraform Interview Questions
 
+## Terraform Dynamic Block
+
+This example shows how dynamic blocks can be used to dynamically create multiple instances of a block within a resource from a complex value such as a list of maps.
+
+The special dynamic block type serves the same purpose as a for expression, except it creates multiple repeatable nested blocks instead of a complex value.
+
+
+Example-1 : 
+
+          dynamic "zones" {
+            for_each = (var.worker_zone != null ? var.worker_zone : [])
+            content {
+              name      = "${var.region}-${zones.key + 1}"
+              subnet_id = zones.value
+            }
+          }
+          
+Example-2 : 
+
+        locals {
+            ingress_rules = [{
+                port        = 443
+                description = "Port 443"
+            },
+            {
+                port        = 80
+                description = "Port 80"
+            }]
+        }
+
+        resource "aws_security_group" "main" {
+            name   = "foo"
+            vpc_id = data.aws_vpc.main.id
+
+            dynamic "ingress" {
+                for_each = local.ingress_rules
+
+                content {
+                    description = ingress.value.description
+                    from_port   = ingress.value.port
+                    to_port     = ingress.value.port
+                    protocol    = "tcp"
+                    cidr_blocks = ["0.0.0.0/0"]
+                }
+            }
+        }
     
 ## Terraform Taint and Un-Taint
 
